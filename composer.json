@@ -20,5 +20,10 @@
       "Zendesk\\API\\": "src/",
       "Zendesk\\Console\\": "src/"
     }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "2.2-dev"
+    }
   }
 }
