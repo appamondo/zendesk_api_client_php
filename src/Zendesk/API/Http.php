@@ -29,7 +29,8 @@ class Http
      *                             string $method "GET", "POST", etc. Default is GET.
      *                             string $contentType Default is "application/json"
      *
-     * @return \stdClass | null The response body, parsed from JSON into an object. Also returns null if something went wrong
+     * @return \stdClass | null The response body, parsed from JSON into an object.
+     *                              Also returns null if something went wrong
      * @throws ApiResponseException
      * @throws AuthException
      */
@@ -109,8 +110,7 @@ class Http
 
         $body = json_decode($response->getBody());
 
-        if($body != null)
-        {
+        if ($body != null) {
             $body->X_Rate_Limit = $response->getHeaders()['X-Rate-Limit'][0];
             $body->X_Rate_Limit_Remaining = $response->getHeaders()['X-Rate-Limit-Remaining'][0];
         }
