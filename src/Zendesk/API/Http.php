@@ -115,7 +115,7 @@ class Http
                 $body->X_Rate_Limit = $response->getHeaders()['X-Rate-Limit'][0];
             }
 
-            if (isset($response->getHeaders()['X-Rate-Limit-Remaining'][0])) {
+            if (isset($response->getHeaders()['X-Rate-Limit-Remaining'])) {
                 $body->X_Rate_Limit = $response->getHeaders()['X-Rate-Limit-Remaining'][0];
             }
         }
