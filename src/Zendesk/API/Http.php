@@ -111,6 +111,7 @@ class Http
         $body = json_decode($response->getBody());
 
         if ($body != null) {
+            $body->response = $response;
             if (isset($response->getHeaders()['X-Rate-Limit'])) {
                 $body->X_Rate_Limit = $response->getHeaders()['X-Rate-Limit'][0];
             }
@@ -119,7 +120,6 @@ class Http
                 $body->X_Rate_Limit_Remaining = $response->getHeaders()['X-Rate-Limit-Remaining'][0];
             }
         }
-
 
         return $body;
 
