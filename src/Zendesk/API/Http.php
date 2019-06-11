@@ -91,8 +91,8 @@ class Http
                 list ($request, $requestOptions) = $client->getAuth()->prepareRequest($request, $requestOptions);
             }
             $response = $client->guzzle->send($request, $requestOptions);
-//            $body = $response->getBody();
-            var_dump($response->getBody());
+            $headers = $response->getHeaders();
+            var_dump($headers);
 //            if (isset($body->response->getHeaders()['X-Rate-Limit-Remaining'][0])) {
 //                sleep($body->response->getHeaders()['X-Rate-Limit-Remaining'][0]);
 //            }
