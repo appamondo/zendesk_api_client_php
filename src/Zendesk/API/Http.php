@@ -91,11 +91,11 @@ class Http
                 list ($request, $requestOptions) = $client->getAuth()->prepareRequest($request, $requestOptions);
             }
             $response = $client->guzzle->send($request, $requestOptions);
-            $body = $response->getBody();
-            var_dump($body);
-            if (isset($body->response->getHeaders()['X-Rate-Limit-Remaining'][0])) {
-                sleep($body->response->getHeaders()['X-Rate-Limit-Remaining'][0]);
-            }
+//            $body = $response->getBody();
+            var_dump($response);
+//            if (isset($body->response->getHeaders()['X-Rate-Limit-Remaining'][0])) {
+//                sleep($body->response->getHeaders()['X-Rate-Limit-Remaining'][0]);
+//            }
         } catch (RequestException $e) {
             $requestException = RequestException::create($e->getRequest(), $e->getResponse(), $e);
             throw new ApiResponseException($requestException);
