@@ -92,7 +92,7 @@ class Http
             }
             $response = $client->guzzle->send($request, $requestOptions);
 //            $body = $response->getBody();
-            var_dump($response);
+            var_dump($response->getBody());
 //            if (isset($body->response->getHeaders()['X-Rate-Limit-Remaining'][0])) {
 //                sleep($body->response->getHeaders()['X-Rate-Limit-Remaining'][0]);
 //            }
