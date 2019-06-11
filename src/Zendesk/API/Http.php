@@ -91,6 +91,10 @@ class Http
                 list ($request, $requestOptions) = $client->getAuth()->prepareRequest($request, $requestOptions);
             }
             $response = $client->guzzle->send($request, $requestOptions);
+            $headers = $response->getHeaders();
+            if (isset($headers['X-Rate-Limit-Remaining'][0]) && $headers['X-Rate-Limit-Remaining'][0] < 100) {
+                sleep($headers['X-Rate-Limit-Remaining'][0]);
+            }
         } catch (RequestException $e) {
             $requestException = RequestException::create($e->getRequest(), $e->getResponse(), $e);
             throw new ApiResponseException($requestException);
@@ -110,19 +114,6 @@ class Http
 
         $body = json_decode($response->getBody());
 
-        if ($body != null) {
-            $body->response = $response;
-            if (isset($response->getHeaders()['X-Rate-Limit'])) {
-                $body->X_Rate_Limit = $response->getHeaders()['X-Rate-Limit'][0];
-            }
-
-            if (isset($response->getHeaders()['X-Rate-Limit-Remaining'])) {
-                $body->X_Rate_Limit_Remaining = $response->getHeaders()['X-Rate-Limit-Remaining'][0];
-            }
-        }
-
         return $body;
-
-       // return json_decode($response->getBody());
     }
 }
