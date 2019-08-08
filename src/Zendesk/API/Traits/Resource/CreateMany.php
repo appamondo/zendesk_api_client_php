@@ -34,6 +34,10 @@ trait CreateMany
             $this->setRoute('createMany', $route);
         }
 
+        if($this->resourceName === 'dynamic_content_item_variants') {
+            $this->objectNamePlural = 'variants';
+        }
+
         return $this->client->post($route, [$this->objectNamePlural => $params]);
     }
 }
